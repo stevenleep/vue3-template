@@ -11,5 +11,9 @@
   "editor.rulers": [100],
   "workbench.colorCustomizations": {
     "editorRuler.foreground": "#9a5151"
-  }
+  },
+
+  // ref: vscode tips
+  // https://www.youtube.com/watch?v=EA_KnOZI-ck
+  "editor.suggest.preview": true
 }
