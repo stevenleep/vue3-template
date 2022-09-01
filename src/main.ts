@@ -1,4 +1,9 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import { setAppTitle, getEnvOrDefault } from "./utils";
 
-createApp(App).mount('#app')
+// Set app title according to runtime environment
+setAppTitle(getEnvOrDefault("APP_TITLE", "Admin"));
+
+// Start app
+createApp(App).mount("#app");
