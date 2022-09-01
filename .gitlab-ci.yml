@@ -1,0 +1,32 @@
+stages
+  - check
+  - test
+  - build
+  - deploy
+  - cleanup
+
+check-job:
+  stage: check
+  script:
+    - echo "Checking code..."
+test-of-lint-job:
+  stage: test
+  script:
+    - echo "Testing code..."
+test-of-unit-job:
+  stage: test
+  script:
+    - echo "Testing code..."
+build-job:
+  stage: build
+  script:
+    - echo "Building code..."
+deploy-job:
+  stage: deploy
+  script:
+    - echo "Deploying code..."
+
+cleanup-job:
+  stage: cleanup
+  script:
+    - echo "Cleaning up..."
