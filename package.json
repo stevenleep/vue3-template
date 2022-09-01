@@ -20,6 +20,7 @@
     "changelog:first": "standard-version --first-release -t $(date +release-%Y%m%d-v)"
   },
   "dependencies": {
+    "pinia": "^2.0.21",
     "vue": "^3.2.37"
   },
   "devDependencies": {
@@ -47,7 +48,6 @@
   "lint-staged": {
     "*.{js,ts,vue,jsx,tsx}": [
       "pnpm run lint",
-      "pnpm run format",
       "git add"
     ]
   }
