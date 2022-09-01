@@ -17,7 +17,6 @@ export default defineConfig({
       "@components": "/src/components",
       "@store": "/src/store",
       "@services": "/src/services",
-      "@locales": "/src/locales",
       "@utils": "/src/utils"
     }
   },
