@@ -15,5 +15,8 @@
 
   // ref: vscode tips
   // https://www.youtube.com/watch?v=EA_KnOZI-ck
-  "editor.suggest.preview": true
+  "editor.suggest.preview": true,
+  "cSpell.words": [
+    "preinstall"
+  ]
 }
