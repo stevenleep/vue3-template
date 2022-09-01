@@ -1,6 +1,10 @@
-export const isDev = getEnv("NODE_ENV") === "development";
-export const isProd = getEnv("NODE_ENV") === "production";
-export const isTest = getEnv("NODE_ENV") === "test";
+// default development environment
+const MODE = getEnvOrDefault("MODE", "development");
+
+export const isDev = MODE === "development";
+export const isProd = MODE === "production";
+export const isTest = MODE === "test";
+
 
 export function getEnvs(): ImportMetaEnv {
   return import.meta.env;
