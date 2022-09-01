@@ -1,7 +1,7 @@
 {
   "name": "admin",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "engines": {
     "node": ">=10.0.0"
@@ -12,10 +12,12 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
+    "simulate": "pnpm run build && live-server dist --port=8080",
     "lint-staged": "lint-staged",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --fix src",
     "format": "prettier .  --write",
-    "simulate": "pnpm run build && live-server dist --port=8080"
+    "changelog": "standard-version -t $(date +release-%Y%m%d-v)",
+    "changelog:first": "standard-version --first-release -t $(date +release-%Y%m%d-v)"
   },
   "dependencies": {
     "vue": "^3.2.37"
@@ -35,6 +37,7 @@
     "live-server": "1.2.2",
     "only-allow": "^1.1.1",
     "prettier": "2.7.1",
+    "standard-version": "9.5.0",
     "terser": "^5.15.0",
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
