@@ -5,13 +5,9 @@ export const isDev = MODE === "development";
 export const isProd = MODE === "production";
 export const isTest = MODE === "test";
 
-
-export function getEnvs(): ImportMetaEnv {
-  return import.meta.env;
-}
-
+export const envs = import.meta.env;
 export function getEnv(key: string): string {
-  return getEnvs()[key];
+  return envs[key];
 }
 
 export function getEnvOrThrow(key: string): string {
