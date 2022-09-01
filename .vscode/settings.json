@@ -1,0 +1,15 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  // ref: https://en.wikipedia.org/wiki/Newline#History
+  "files.eol": "\n",
+
+  // Render vertical rulers after a certain number of monospace characters.
+  // Use multiple values for multiple rulers.
+  // No rulers are drawn if array is empty.
+  "editor.rulers": [100],
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#9a5151"
+  }
+}
