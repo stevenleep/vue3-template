@@ -10,16 +10,25 @@
     "preinstall": "only-allow pnpm && sh ./scripts/preinstall.sh",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --fix src",
+    "format": "prettier .  --write"
   },
   "dependencies": {
     "vue": "^3.2.37"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "5.36.1",
+    "@typescript-eslint/parser": "5.36.1",
     "@vitejs/plugin-vue": "^3.0.3",
+    "eslint": "8.23.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-vue": "9.4.0",
     "only-allow": "^1.1.1",
+    "prettier": "2.7.1",
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
+    "vite-plugin-eslint": "1.8.1",
     "vue-tsc": "^0.39.5"
   }
 }

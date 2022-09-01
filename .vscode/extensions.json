@@ -8,7 +8,8 @@
 
     // ref: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
     "dbaeumer.vscode-eslint",
-
+    "esbenp.prettier-vscode",
+    
     // ref: https://marketplace.visualstudio.com/items?itemName=Vue.volar
     "Vue.volar"
   ]

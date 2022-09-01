@@ -4,5 +4,5 @@
 </script>
 
 <template>
-<div>admin</div>
+  <div>admin s dd</div>
 </template>
