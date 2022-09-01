@@ -31,7 +31,9 @@
   // https://www.youtube.com/watch?v=EA_KnOZI-ck
   "editor.suggest.preview": true,
   "cSpell.words": [
-    "preinstall"
+    "commitlint",
+    "preinstall",
+    "VITE"
   ],
   "vetur.validation.template": false,
 }
