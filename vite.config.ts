@@ -9,6 +9,10 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 // https://github.com/vitejs/vite/tree/main/packages/plugin-legacy#polyfill-specifiers
 import legacy from "@vitejs/plugin-legacy";
 
+// the environment variable of DEV that will only be used for the time being
+// It will be used to control Mockjs and SourceMap switches
+// const devEnv = loadEnv("development", process.cwd());
+
 // https://vitejs.dev/config/
 export default defineConfig({
   // Although the documentation is recommended ./ for development environment,
