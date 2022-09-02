@@ -1,9 +1,9 @@
 import { createApp } from "vue";
 import "element-plus/dist/index.css";
-import App from "./App.vue";
 import { setupPinia } from "@/store";
-import { setAppTitle, getEnvOrDefault } from "@/utils";
+import { getEnvOrDefault, setAppTitle } from "@/utils";
 import { setupRouter } from "@/router";
+import App from "./App.vue";
 
 import "@/mock";
 
