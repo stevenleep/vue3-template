@@ -13,6 +13,5 @@ declare module "@vue/runtime-core" {
     RouterLink: typeof import("vue-router")["RouterLink"];
     RouterView: typeof import("vue-router")["RouterView"];
     Traversal: typeof import("./src/components/Traversal/Traversal.vue")["default"];
-    Traversy: typeof import("./src/components/Traversy/Traversy.vue")["default"];
   }
 }
