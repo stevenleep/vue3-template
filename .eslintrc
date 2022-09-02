@@ -1,0 +1,51 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "browser": true,
+    "es2022": true
+  },
+
+  // https://eslint.org/docs/latest/user-guide/configuring/plugins#specifying-parser
+  "parser": "vue-eslint-parser",
+
+  // Why do you need parserOptions?
+  // ref: https://eslint.vuejs.org/user-guide/#usage
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module",
+    "ecmaVersion": "latest",
+
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "jsx": true
+    },
+  
+    "allowImportExportEverywhere": true
+  },
+
+  "globals": {
+    "window": true,
+
+    "defineProps": "readonly",
+    "defineEmits": "readonly",
+    "defineExpose": "readonly",
+    "withDefaults": "readonly"
+  },
+
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:prettier/recommended"
+  ],
+
+  "plugins": ["vue", "@typescript-eslint", "prettier"],
+  "rules": {
+    "no-unused-vars": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    // 在不同目录下会存在同名的组件
+    "vue/multi-word-component-names": "off"
+  }
+}

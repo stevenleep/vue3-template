@@ -1,7 +1,8 @@
 {
   "editor.formatOnSave": true,
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll": true
   },
   "eslint.validate": [
     "javascript",
@@ -10,32 +11,35 @@
     "typescriptreact",
     "vue"
   ],
-  "[vue]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript, typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  
   // ref: https://en.wikipedia.org/wiki/Newline#History
   "files.eol": "\n",
+  
   // Render vertical rulers after a certain number of monospace characters.
   // Use multiple values for multiple rulers.
   // No rulers are drawn if array is empty.
-  "editor.rulers": [
-    100
-  ],
+  "editor.rulers": [100],
   "workbench.colorCustomizations": {
     "editorRuler.foreground": "#9a5151"
   },
+  
+  "editor.renderWhitespace": "selection",
+
   // ref: vscode tips
   // https://www.youtube.com/watch?v=EA_KnOZI-ck
   "editor.suggest.preview": true,
+  
   "cSpell.words": [
     "commitlint",
     "ddhmit",
+    "pinia",
     "preinstall",
     "unplugin",
     "VITE"
   ],
+
+  // close vetur ts.js validation
+  // use default prettier-vscode
   "vetur.validation.template": false,
+  "vetur.validation.script": false
 }
