@@ -69,13 +69,15 @@ pnpm dev
 ```
 
 ## Agreed
-- How to perform git collaboration?
-    - [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
-- How to write commit message?
-    - [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
-    - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- How to Code Review?
-    - [Code Review Best Practices](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/)
+How to perform git collaboration?
+- [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
+
+How to write commit message?
+- [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
+How to Code Review?
+- [Code Review Best Practices](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/)
 
 ## Documents
 Small note: documents stored in `docs` directory
