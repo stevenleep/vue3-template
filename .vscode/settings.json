@@ -30,12 +30,14 @@
   "editor.suggest.preview": true,
   
   "cSpell.words": [
+    "axios",
     "commitlint",
     "ddhmit",
     "pinia",
     "preinstall",
     "unplugin",
-    "VITE"
+    "VITE",
+    "vitejs"
   ],
 
   // close vetur ts.js validation

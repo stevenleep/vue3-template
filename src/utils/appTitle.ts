@@ -1,4 +1,4 @@
-let oldTitle = getAppTitle();
+const oldTitle = getAppTitle();
 
 export function setAppTitle(title: string): void {
   document.title = title;
