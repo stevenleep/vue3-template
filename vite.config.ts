@@ -31,12 +31,15 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      "@/*": "/src/*",
+      "@": "/src",
       "@components": "/src/components",
       "@store": "/src/store",
       "@services": "/src/services",
       "@http": "/src/services/http",
       "@utils": "/src/utils",
+      "@hooks": "/src/hooks",
+      "@router": "/src/router",
+      "@config": "/src/config",
     },
   },
 
@@ -57,6 +60,12 @@ export default defineConfig({
       extensions: ["vue"],
       deep: true,
       exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/],
+      types: [
+        {
+          from: "vue-router",
+          names: ["RouterLink", "RouterView"],
+        },
+      ],
     }),
 
     eslintPlugin(),

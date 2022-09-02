@@ -22,7 +22,10 @@
       "@store/*": ["src/store/*"],
       "@services/*": ["src/services/*"],
       "@utils": ["src/utils/*"],
-      "@http/*": ["src/services/http/*"]
+      "@http/*": ["src/services/http/*"],
+      "@config": ["src/config/*"],
+      "@router": ["src/router/*"],
+      "@hooks": ["src/hooks/*"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite-env.d.ts", "components.d.ts"],

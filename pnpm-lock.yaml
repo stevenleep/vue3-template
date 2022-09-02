@@ -27,6 +27,7 @@ specifiers:
   vite: ^3.0.7
   vite-plugin-eslint: 1.8.1
   vue: ^3.2.37
+  vue-router: '4'
   vue-tsc: ^0.39.5
 
 dependencies:
@@ -34,6 +35,7 @@ dependencies:
   element-plus: 2.2.15_vue@3.2.38
   pinia: 2.0.21_pj7ch6rmow6odq73xb5hfvge3q
   vue: 3.2.38
+  vue-router: 4.1.5_vue@3.2.38
 
 devDependencies:
   '@commitlint/cli': 17.1.2
@@ -4970,6 +4972,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /vue-router/4.1.5_vue@3.2.38:
+    resolution: {integrity: sha512-IsvoF5D2GQ/EGTs/Th4NQms9gd2NSqV+yylxIyp/OYp8xOwxmU8Kj/74E9DTSYAyH5LX7idVUngN3JSj1X4xcQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.2.1
+      vue: 3.2.38
+    dev: false
 
   /vue-tsc/0.39.5_typescript@4.8.2:
     resolution: {integrity: sha512-jhTsrKhZkafpIeN4Cbhr1K53hNfa/oesSrlh7hUaeHyCk55VhZT6oJkwJbtqN4MYkWZIwPrm3/xTwsELuf2ocg==}
