@@ -25,6 +25,7 @@
     "@vueuse/router": "^9.1.1",
     "axios": "^0.27.2",
     "element-plus": "^2.2.15",
+    "mockjs": "1.1.0",
     "pinia": "^2.0.21",
     "vue": "^3.2.37",
     "vue-router": "4"
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
     "@commitlint/config-conventional": "17.1.0",
+    "@types/mockjs": "1.0.6",
     "@typescript-eslint/eslint-plugin": "5.36.1",
     "@typescript-eslint/parser": "5.36.1",
     "@vitejs/plugin-legacy": "2.0.1",

@@ -5,6 +5,8 @@ import { setupPinia } from "@/store";
 import { setAppTitle, getEnvOrDefault } from "@/utils";
 import { setupRouter } from "@/router";
 
+import "@/mock";
+
 // Set app title according to runtime environment
 setAppTitle(getEnvOrDefault("VITE_APP_TITLE", "Admin"));
 
