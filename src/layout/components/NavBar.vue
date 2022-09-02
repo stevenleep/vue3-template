@@ -10,6 +10,7 @@
             aria-expanded="false"
             aria-label="Menu Item"
           >
+            <el-icon><Promotion /></el-icon>
             <RouterLink :to="value.path">{{ value.name }}</RouterLink>
           </li>
         </template>
@@ -19,6 +20,7 @@
 </template>
 
 <script lang="ts" setup>
+import { Promotion } from "@element-plus/icons-vue";
 import { Paths } from "@/config";
 import { reactive } from "vue";
 
