@@ -15,12 +15,27 @@ export default defineConfig({
   // it is convenient for migration and local testing, and production is switched to this path
   // ref: https://vitejs.bootcss.com/config/#base
   base: "./",
+
+  // https://cn.vitejs.dev/config/build-options.html#build-sourcemap
+  build: {
+    /**
+     * XXX: About sourcemap
+     *
+     * It is recommended to open in the real generation environment,
+     * deploy the sourceMap in different services, and access through the internal network
+     *
+     * Can be used for: wrong positioning in the monitoring system
+     */
+    sourcemap: false,
+  },
+
   resolve: {
     alias: {
       "@/*": "/src/*",
       "@components": "/src/components",
       "@store": "/src/store",
       "@services": "/src/services",
+      "@http": "/src/services/http",
       "@utils": "/src/utils",
     },
   },
@@ -34,8 +49,14 @@ export default defineConfig({
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),
+    // https://github.com/antfu/unplugin-vue-components
     Components({
+      dts: true,
       resolvers: [ElementPlusResolver()],
+      dirs: ["src/components"],
+      extensions: ["vue"],
+      deep: true,
+      exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/],
     }),
 
     eslintPlugin(),
