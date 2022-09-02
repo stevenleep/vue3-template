@@ -3,7 +3,7 @@
  *
  * @description
  *
- * because of the TS-PARSER problem, it will make the UNPLugin-Vue-components automatically
+ * because of the TS-PARSER problem, it will make the unplugin-vue-components automatically
  * find the type definition of the type of no .vue file
  */
 declare module "*.vue" {
