@@ -20,6 +20,8 @@
     "changelog:first": "standard-version --first-release -t $(date +release-%Y%m%d-v)"
   },
   "dependencies": {
+    "@vueuse/components": "^9.1.1",
+    "@vueuse/core": "^9.1.1",
     "axios": "^0.27.2",
     "element-plus": "^2.2.15",
     "pinia": "^2.0.21",

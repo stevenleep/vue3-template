@@ -37,7 +37,8 @@
     "preinstall",
     "unplugin",
     "VITE",
-    "vitejs"
+    "vitejs",
+    "vueuse"
   ],
 
   // close vetur ts.js validation
