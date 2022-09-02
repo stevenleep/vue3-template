@@ -31,6 +31,7 @@ pnpm dev
 ```
 
 ## Structure
+![runway](./docs/images/runway.png)
 ### Top directory
 ```bash
 .
@@ -55,16 +56,21 @@ pnpm dev
 ```bash
 .
 ├── App.vue
-├── assets # static resources
-├── components # global components (Support automatic import)
-├── directive # vue3 custom directive
-├── env.d.ts # environment variable type definition
-├── main.ts # entry file
-├── pages
-├── router
+├── assets # static assets
+├── components # components (auto imported)
+├── config # configuration
+├── directive # custom directives 
+├── env.d.ts
+├── hooks # custom hooks
+├── layout # layout components
+├── main.ts
+├── mock # mock data
+├── router # router
 ├── services # api/domains-services
 ├── store # pinia
+├── styles.scss
 ├── utils # some commonly used functions
+├── views
 └── vite-env.d.ts # module type definition
 ```
 
