@@ -33,6 +33,7 @@
     "axios",
     "commitlint",
     "ddhmit",
+    "mockjs",
     "pinia",
     "preinstall",
     "unplugin",
