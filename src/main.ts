@@ -7,6 +7,8 @@ import { setupRouter } from "@/router";
 
 import "@/mock";
 
+import "./styles.scss";
+
 // Set app title according to runtime environment
 setAppTitle(getEnvOrDefault("VITE_APP_TITLE", "Admin"));
 
