@@ -2,4 +2,4 @@
 
 echo "Preinstall script"
 
-source ./scripts/setup-git.sh
+sh ./scripts/setup-git.sh
