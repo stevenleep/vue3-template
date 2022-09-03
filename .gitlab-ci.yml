@@ -1,22 +1,35 @@
 # 防止构建工具带来的麻烦，将线上本地开发时候的版本统一
-
 # 版本如下：
 # node版本16.15.0
 # pnpm版本7.1.7 (为什么使用pnpm: https://pnpm.io/zh/motivation)
 image: node:16.15.0
 
-# before_script:
-#   - node -v
-#   - npm -v
+default:
+  only:
+    - master
+    - develop
+    - /^feature\/(WIP-|Draft-).*$/
+    - /^release\/.*$/
+    - /^hotfix\/.*$/
+    - tags # /^v.*$/
+  except:
+    - schedules
 
+# define stages for jobs
 stages:
   - .pre
   - preinstall
   - lint
   - build
   - test
+  - dockerize # docker build 阶段, 完成后可考虑使用 kubectl apply 来进行资源部署/更新
   - deploy
   - .post
+
+variables:
+  # docker build variables
+  - IMAGE_NAME: ddhmit-frontend-admin
+  - CI_IMAGE: $CI_REGISTRY_IMAGE/$IMAGE_NAME:$CI_COMMIT_SHORT_SHA
 
 # before_script 在每个job执行前执行
 before_script:
@@ -41,21 +54,16 @@ before_script:
 #
 # XXX: 提供默认的 init-env.sh 脚本?
 #
-set environment:
+set-environment:
   stage: .pre
   script:
     - ls -lsa ./scripts/init-env.sh
     - whoami
     - chmod +x ./scripts/init-env.sh
     - ./scripts/init-env.sh
-  # 仅让不可支持部署的分支进行预处理（其余分支只允许运行lint）
-  only:
-    - master
-    - develop
-    - /^feature\/(WIP-|Draft-).*$/
-    - /^release\/.*$/
-    - /^hotfix\/.*$/
-    - tags # /^v.*$/
+  inherit:
+    default:
+      - only
 
 # 预处理 - 安装依赖/缓存依赖
 preinstall:
@@ -126,7 +134,7 @@ test:
 build:
   stage: build
   dependencies:
-    - "set environment"
+    - "set-environment"
     - "preinstall"
   cache:
     key:
@@ -135,8 +143,8 @@ build:
         - pnpm-lock.yaml
     paths:
       - node_modules
-      # - dist
-    policy: pull
+      - dist
+    policy: pull-push
   script:
     - echo "🚀 build $CI_COMMIT_REF_NAME environment"
     - cat .env.production
@@ -148,29 +156,45 @@ build:
       - dist
     expire_in: 2 day # 2天后过期
     when: always # 无论成功失败都上传
-  only:
-    - master # 预生产使用(真实生产是使用 tag)
-    - develop # develop 分支会触发, 可以将 develop 分支部署到测试环境
-    # 以 feature/WIP- 和 feature/Draft- 开头的分支会触发构建
-    # Draft对应的为 GitLab 的 Draft MR，WIP 是行业另外一种草稿约定
-    - /^feature\/(WIP-|Draft-).*$/
-    - /^release\/.*$/
-    - /^hotfix\/.*$/
-    - tags # /^v.*$/
+  inherit:
+    default:
+      - only
+
+# docker Login
+.docker-login:
+  before_script:
+    - echo "🔑 docker login"
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  inherit:
+    default:
+      - only
+
+# docker 编排
+docker-build:
+  extends: .docker-login
+  stage: dockerize
+  image: docker
+  services:
+    - docker:dind
+  cache:
+    key:
+      files:
+        - package.json
+        - pnpm-lock.yaml
+    paths:
+      - dist
+    policy: pull
+  script:
+    - echo "🐳 build docker image"
+    - docker build -t $CI_IMAGE .
+    - docker push $CI_IMAGE
 
 # 测试
 # 检测构建结果是否符合预期
 # --------------------------------------------------------------------
 # 检查构建产物 dist 目录是否存在
-check dist:
+check-dist:
   stage: test
-  only:
-    - master
-    - develop
-    - /^feature\/(WIP-|Draft-).*$/
-    - /^release\/.*$/
-    - /^hotfix\/.*$/
-    - tags # /^v.*$/
   script:
     - |
       if [ -d "dist" ] ; then
@@ -181,10 +205,13 @@ check dist:
           echo "you can check the code error through the output log."
           echo "If you find that it is a flow line configuration problem, please feedback the problem to the maintenance personnel!"
       fi
+  inherit:
+    default:
+      - only
 
 # source map检查
 # 如果需要部署到生产环境，source map 对监控系统是非常有必要的
-check source map:
+check-sourcemap:
   stage: test
   only:
     - master
@@ -192,6 +219,19 @@ check source map:
     - tags # /^v.*$/
   script:
     - if [ -f "/dist/*.map" ]; then echo "source map exists"; fi
+
+# docker Test
+docker-test:
+  extends: .docker-login
+  stage: test
+  image: docker
+  services:
+    - docker:dind
+  script:
+    - echo "🐳 test docker image"
+    - docker pull $CI_IMAGE
+    - docker run $CI_IMAGE
+    # TODO: ...
 
 # 部署
 # --------------------------------------------------------------------
