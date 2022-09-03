@@ -7,7 +7,16 @@ import App from "./App.vue";
 
 import "@/mock";
 
-import "./styles.scss";
+// Why do project need to use normalize.css?
+// ref: https://github.com/necolas/normalize.css/
+import "normalize.css/normalize.css";
+
+// Initialize APP style
+// Used to import commonly used SCSS variables and functions
+import "@/assets/styles/normalize.scss";
+
+// unocss
+import "uno.css";
 
 // Set app title according to runtime environment
 setAppTitle(getEnvOrDefault("VITE_APP_TITLE", "Admin"));
