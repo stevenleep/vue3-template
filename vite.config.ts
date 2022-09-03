@@ -8,6 +8,10 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import progress from "vite-plugin-progress";
+import path from "path";
+
+import UnoCSS from "unocss/vite";
+import { presetAttributify, presetUno } from "unocss";
 
 import Inspect from "vite-plugin-inspect";
 
@@ -53,6 +57,7 @@ export default defineConfig({
 
   resolve: {
     alias: {
+      "~/": `${path.resolve(__dirname, "src")}/`,
       "@": "/src",
       "@components": "/src/components",
       "@store": "/src/store",
@@ -65,6 +70,17 @@ export default defineConfig({
     },
   },
 
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @use "@/assets/styles/_import-now.scss";
+          @use "@/assets/styles/element-theme.scss" as *;
+        `,
+      },
+    },
+  },
+
   plugins: [
     vue(),
 
@@ -73,7 +89,10 @@ export default defineConfig({
 
     AutoImport({
       resolvers: [
-        ElementPlusResolver(),
+        ElementPlusResolver({
+          importStyle: "sass",
+          directives: true,
+        }),
         IconsResolver({
           prefix: "Icon",
         }),
@@ -82,7 +101,13 @@ export default defineConfig({
     // https://github.com/antfu/unplugin-vue-components
     Components({
       dts: true,
-      resolvers: [IconsResolver(), ElementPlusResolver()],
+      resolvers: [
+        IconsResolver(),
+        ElementPlusResolver({
+          importStyle: "sass",
+          directives: true,
+        }),
+      ],
       dirs: ["src/components"],
       extensions: ["vue"],
       deep: true,
@@ -98,6 +123,10 @@ export default defineConfig({
     Icons({ autoInstall: true }),
 
     eslintPlugin(),
+
+    UnoCSS({
+      presets: [presetUno(), presetAttributify()],
+    }),
 
     // legacy options
     // ref: https://github.com/vitejs/vite/tree/main/packages/plugin-legacy#options
