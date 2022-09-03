@@ -1,9 +1,9 @@
 <template>
   <div class="app-layout">
     <NavBar />
-    <AppMain />
-
-    <el-button type="primary">Primary</el-button>
+    <div class="main-container">
+      <AppMain />
+    </div>
   </div>
 </template>
 

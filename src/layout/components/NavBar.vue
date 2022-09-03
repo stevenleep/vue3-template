@@ -10,10 +10,8 @@
             aria-expanded="false"
             aria-label="Menu Item"
           >
-            <el-icon> <Promotion /></el-icon>
-            <RouterLink :to="value.path">
-              {{ value.name }}
-            </RouterLink>
+            <el-icon><Promotion /></el-icon>
+            <RouterLink :to="value.path">{{ value.name }}</RouterLink>
           </li>
         </template>
       </Traversal>
@@ -31,9 +29,3 @@ const fakeMenus = reactive([
   { id: "index", name: "Index", icon: "menu-view-index", path: Paths.Index },
 ]);
 </script>
-
-<style lang="scss" scoped>
-.menu-item {
-  color: red;
-}
-</style>
