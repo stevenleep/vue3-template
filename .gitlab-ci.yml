@@ -1,32 +1,232 @@
-stages
-  - check
-  - test
+# 防止构建工具带来的麻烦，将线上本地开发时候的版本统一
+
+# 版本如下：
+# node版本16.15.0
+# pnpm版本7.1.7 (为什么使用pnpm: https://pnpm.io/zh/motivation)
+image: node:16.15.0
+
+# before_script:
+#   - node -v
+#   - npm -v
+
+stages:
+  - .pre
+  - preinstall
+  - lint
   - build
+  - test
   - deploy
-  - cleanup
+  - .post
 
-check-job:
-  stage: check
+# before_script 在每个job执行前执行
+before_script:
+  - node -v
+  - npm -v
+  - |
+    if [ $CI_JOB_STAGE == "preinstall" ] || [ $CI_JOB_STAGE == "build" ] || [ $CI_JOB_STAGE == "lint" ]; then
+      echo "✅ switch to use taobao registry"
+      npm set registry https://registry.npmmirror.com/
+
+      echo "✅ switch to PNPM for package management..."
+      npm install -g pnpm
+      pnpm -v
+    else
+      echo "✅ the job at this stage does not need to use pnpm, skip automatically" 
+    fi
+
+# 预处理 - 环境注入
+#
+# 在 prepare environment 阶段将 CI/CD 中的变量注入到项目环境变量中
+# 前端项目提供 scripts/init-env.sh 脚本来实现环境注入(当CI执行时候会调用这个脚本)
+#
+# XXX: 提供默认的 init-env.sh 脚本?
+#
+set environment:
+  stage: .pre
   script:
-    - echo "Checking code..."
-test-of-lint-job:
-  stage: test
+    - ls -lsa ./scripts/init-env.sh
+    - whoami
+    - chmod +x ./scripts/init-env.sh
+    - ./scripts/init-env.sh
+  # 仅让不可支持部署的分支进行预处理（其余分支只允许运行lint）
+  only:
+    - master
+    - develop
+    - /^feature\/(WIP-|Draft-).*$/
+    - /^release\/.*$/
+    - /^hotfix\/.*$/
+    - tags # /^v.*$/
+
+# 预处理 - 安装依赖/缓存依赖
+preinstall:
+  stage: preinstall
+  cache:
+    key:
+      files:
+        - package.json
+        - pnpm-lock.yaml
+    paths:
+      - node_modules
+      - .pnpm-store
+      # - dist
+    policy: pull-push
+  # ref: https://docs.gitlab.com/ee/ci/yaml/#retrywhen
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+      # - api_failure # 由于网络问题，导致api失败(交给部署平台自己处理，如果有)
   script:
-    - echo "Testing code..."
-test-of-unit-job:
-  stage: test
+    - echo "📦 install dependencies"
+    - pnpm install
+
+# 代码检查
+# --------------------------------------------------------------------
+# eslint 代码检查
+eslint:
+  stage: lint
+  dependencies:
+    - preinstall
+  cache:
+    key:
+      files:
+        - package.json
+        - pnpm-lock.yaml
+    paths:
+      - node_modules
+      - .pnpm-store
+      # - dist
+    policy: pull
   script:
-    - echo "Testing code..."
-build-job:
+    - echo "🔍 eslint\:run ESLINT for code verification"
+    - pnpm lint
+
+# 单元测试校验
+test:
+  stage: lint
+  dependencies:
+    - preinstall
+  cache:
+    key:
+      files:
+        - package.json
+        - pnpm-lock.yaml
+    paths:
+      - node_modules
+      - .pnpm-store
+      # - dist
+    policy: pull
+  script:
+    - echo "🔍 run test case"
+    - pnpm test
+
+
+# 构建
+# --------------------------------------------------------------------
+build:
   stage: build
+  dependencies:
+    - "set environment"
+    - "preinstall"
+  cache:
+    key:
+      files:
+        - package.json
+        - pnpm-lock.yaml
+    paths:
+      - node_modules
+      # - dist
+    policy: pull
   script:
-    - echo "Building code..."
-deploy-job:
-  stage: deploy
-  script:
-    - echo "Deploying code..."
+    - echo "🚀 build $CI_COMMIT_REF_NAME environment"
+    - cat .env.production
+    - cat .env.development
+    - pnpm build
+  artifacts:
+    name: '"$CI_COMMIT_REF_SLUG"-"$CI_COMMIT_SHORT_SHA"'
+    paths:
+      - dist
+    expire_in: 2 day # 2天后过期
+    when: always # 无论成功失败都上传
+  only:
+    - master # 预生产使用(真实生产是使用 tag)
+    - develop # develop 分支会触发, 可以将 develop 分支部署到测试环境
+    # 以 feature/WIP- 和 feature/Draft- 开头的分支会触发构建
+    # Draft对应的为 GitLab 的 Draft MR，WIP 是行业另外一种草稿约定
+    - /^feature\/(WIP-|Draft-).*$/
+    - /^release\/.*$/
+    - /^hotfix\/.*$/
+    - tags # /^v.*$/
 
-cleanup-job:
-  stage: cleanup
+
+# 测试
+# 检测构建结果是否符合预期
+# --------------------------------------------------------------------
+# 检查构建产物 dist 目录是否存在
+check dist:
+  stage: test
+  only:
+    - master
+    - develop
+    - /^feature\/(WIP-|Draft-).*$/
+    - /^release\/.*$/
+    - /^hotfix\/.*$/
+    - tags # /^v.*$/
   script:
-    - echo "Cleaning up..."
+    - |
+      if [ -d "dist" ] ; then
+        echo "✅ dist directory exists"
+        echo "can start execute deployment jobs"
+      else
+          echo "❌ dist directory does not exist"
+          echo "you can check the code error through the output log."
+          echo "If you find that it is a flow line configuration problem, please feedback the problem to the maintenance personnel!"
+      fi
+
+# source map检查
+# 如果需要部署到生产环境，source map 对监控系统是非常有必要的
+check source map:
+  stage: test
+  only:
+    - master
+    - /^hotfix\/.*$/
+    - tags # /^v.*$/
+  script:
+    - if [ -f "/dist/*.map" ]; then echo "source map exists"; fi
+
+
+# 部署
+# --------------------------------------------------------------------
+# 开发环境
+deploy-dev:
+  stage: deploy
+  only:
+    - develop
+    - /^feature\/(WIP-|Draft-).*$/
+  script:
+    - echo "🚀 deploy to dev environment"
+    - ls -lsa dist
+
+# 预生产环境
+deploy-release:
+  stage: deploy
+  only:
+    - /^release\/.*$/
+  script:
+    - echo "🚀 deploy to release environment"
+    - ls -lsa dist
+  when: manual # 手动触发(测试人员进行)
+
+# 正式环境
+deploy-prod:
+  stage: deploy
+  only:
+    - master
+    - /^hotfix\/.*$/
+    - tags # /^v.*$/
+  script:
+    - echo "🚀 deploy to prod environment"
+    - ls -lsa dist
+  when: manual # 手动触发(测试人员/运维进行/有一定权限的人员进行)
+    
