@@ -8,14 +8,17 @@ export {};
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
     Column: typeof import("./src/components/FormTable/Column.vue")["default"];
+    DefaultFallback: typeof import("./src/components/ErrorBoundary/DefaultFallback.vue")["default"];
     ElButton: typeof import("element-plus/es")["ElButton"];
     ElForm: typeof import("element-plus/es")["ElForm"];
     ElFormItem: typeof import("element-plus/es")["ElFormItem"];
     ElIcon: typeof import("element-plus/es")["ElIcon"];
     ElInput: typeof import("element-plus/es")["ElInput"];
+    ElLoading: typeof import("element-plus/es")["ElLoading"];
     ElMenuItem: typeof import("element-plus/es")["ElMenuItem"];
     ElTable: typeof import("element-plus/es")["ElTable"];
     ElTableColumn: typeof import("element-plus/es")["ElTableColumn"];
+    ErrorBoundary: typeof import("./src/components/ErrorBoundary/ErrorBoundary.vue")["default"];
     Form: typeof import("./src/components/FormTable/Form.vue")["default"];
     FormTable: typeof import("./src/components/FormTable/index.vue")["default"];
     FormTraversal: typeof import("./src/components/Traversal/FormTraversal.vue")["default"];
@@ -26,5 +29,8 @@ declare module "@vue/runtime-core" {
     RouterView: typeof import("vue-router")["RouterView"];
     Table: typeof import("./src/components/FormTable/Table.vue")["default"];
     Traversal: typeof import("./src/components/Traversal/Traversal.vue")["default"];
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import("element-plus/es")["ElLoadingDirective"];
   }
 }
