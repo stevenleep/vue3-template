@@ -1,0 +1,13 @@
+@import "@/assets/styles/variables";
+
+.app-login-container {
+  height: $screen-height;
+  width: $screen-width;
+  background-color: $base-bg-light;
+}
+
+.login-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

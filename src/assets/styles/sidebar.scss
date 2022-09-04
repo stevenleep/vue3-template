@@ -1,0 +1,61 @@
+#app {
+  .main-container {
+    min-height: 100%;
+    transition: margin-left 0.28s;
+    margin-left: $side-bar-width;
+    position: relative;
+  }
+
+  .sidebar-container {
+    transition: width 0.28s;
+    width: $side-bar-width;
+    background-color: $menu-container-bg;
+    height: 100%;
+    position: fixed;
+    font-size: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
+    overflow: hidden;
+
+    // reset element-ui css
+    .horizontal-collapse-transition {
+      transition: 0s width ease-in-out,
+                  0s padding-left ease-in-out,
+                  0s padding-right ease-in-out;
+    }
+
+    .scrollbar-wrapper {
+      overflow-x: hidden;
+    }
+
+    /* stylelint-disable-next-line selector-class-pattern */
+    .el-scrollbar__bar.is-vertical {
+      right: 0;
+    }
+
+    .is-horizontal {
+      display: none;
+    }
+
+    .el-menu {
+      border: none;
+      height: 100%;
+      width: 100%;
+      background-color: $menu-container-bg;
+    
+      .el-menu-item {
+        color: $menu-text;
+
+        &:hover{
+          background-color: $menu-item-hover-bg;
+        }
+
+        &.is-active {
+          background-color: $menu-item-active-bg;
+        }
+      }    
+    }
+  }
+}
