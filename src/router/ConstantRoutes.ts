@@ -8,6 +8,7 @@ const ConstantRoutes: RouteRecordRaw[] = [
     path: Paths.Index,
     name: Paths.Index,
     component: Layout,
+    redirect: Paths.Home,
     meta: {
       // requiresAuth: true,
       permissions: [RouterMeta.RequiresAuthorized],
@@ -17,6 +18,11 @@ const ConstantRoutes: RouteRecordRaw[] = [
         path: Paths.Dashboard,
         name: Paths.Dashboard,
         component: () => import(/* webpackChunkName: "dashboard" */ "@/views/Dashboard/index.vue"),
+      },
+      {
+        path: Paths.Home,
+        name: Paths.Home,
+        component: () => import(/* webpackChunkName: "home" */ "@/views/Home/index.vue"),
       },
     ],
   },

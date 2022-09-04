@@ -8,6 +8,7 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import progress from "vite-plugin-progress";
+import vueJSX from "@vitejs/plugin-vue-jsx";
 import path from "path";
 
 import UnoCSS from "unocss/vite";
@@ -74,7 +75,6 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @use "@/assets/styles/_import-now.scss";
           @use "@/assets/styles/element-theme.scss" as *;
         `,
       },
@@ -83,6 +83,9 @@ export default defineConfig({
 
   plugins: [
     vue(),
+
+    // https://www.npmjs.com/package/@vitejs/plugin-vue-jsx
+    vueJSX(),
 
     // ref: https://cn.vitejs.dev/guide/build.html#chunking-strategy
     splitVendorChunkPlugin(),

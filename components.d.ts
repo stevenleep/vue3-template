@@ -7,11 +7,24 @@ export {};
 
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
+    Column: typeof import("./src/components/FormTable/Column.vue")["default"];
     ElButton: typeof import("element-plus/es")["ElButton"];
+    ElForm: typeof import("element-plus/es")["ElForm"];
+    ElFormItem: typeof import("element-plus/es")["ElFormItem"];
     ElIcon: typeof import("element-plus/es")["ElIcon"];
+    ElInput: typeof import("element-plus/es")["ElInput"];
+    ElMenuItem: typeof import("element-plus/es")["ElMenuItem"];
+    ElTable: typeof import("element-plus/es")["ElTable"];
+    ElTableColumn: typeof import("element-plus/es")["ElTableColumn"];
+    Form: typeof import("./src/components/FormTable/Form.vue")["default"];
+    FormTable: typeof import("./src/components/FormTable/index.vue")["default"];
+    FormTraversal: typeof import("./src/components/Traversal/FormTraversal.vue")["default"];
+    GenericsTraversal: typeof import("./src/components/Traversal/GenericsTraversal.vue")["default"];
     HelloWorld: typeof import("./src/components/HelloWorld.vue")["default"];
+    NormalizeButton: typeof import("./src/components/Button/NormalizeButton.vue")["default"];
     RouterLink: typeof import("vue-router")["RouterLink"];
     RouterView: typeof import("vue-router")["RouterView"];
+    Table: typeof import("./src/components/FormTable/Table.vue")["default"];
     Traversal: typeof import("./src/components/Traversal/Traversal.vue")["default"];
   }
 }
