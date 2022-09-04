@@ -13,3 +13,14 @@ Mock.mock("/api/mock-test", "get", () => {
     },
   };
 });
+
+Mock.mock("/api/mock-test", "post", () => {
+  return {
+    code: 0,
+    msg: "success",
+    data: {
+      name: "create mock-test",
+      username: "shdioshi",
+    },
+  };
+});
