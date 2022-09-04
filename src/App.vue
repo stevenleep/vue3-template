@@ -3,7 +3,13 @@ import { ElConfigProvider } from "element-plus";
 </script>
 
 <template>
-  <ElConfigProvider>
-    <RouterView />
-  </ElConfigProvider>
+  <Suspense>
+    <ElConfigProvider>
+      <RouterView />
+    </ElConfigProvider>
+
+    <template #fallback>
+      <div v-loading.fullscreen.lock="true" class="loading"></div>
+    </template>
+  </Suspense>
 </template>
