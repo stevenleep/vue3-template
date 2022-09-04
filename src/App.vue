@@ -1,5 +1,18 @@
 <script setup lang="ts">
 import { ElConfigProvider } from "element-plus";
+import services from "@/services";
+import { onMounted } from "vue";
+
+onMounted(async () => {
+  const userData = await services.userService.getUser();
+  console.log(userData);
+
+  const postUserData = await services.userService.postUser();
+  console.log(postUserData);
+
+  const getUserWithParamsData = await services.userService.getUserWithParams();
+  console.log(getUserWithParamsData);
+});
 </script>
 
 <template>
