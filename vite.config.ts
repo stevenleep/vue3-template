@@ -5,6 +5,7 @@ import eslintPlugin from "vite-plugin-eslint";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { VantResolver } from "unplugin-vue-components/resolvers";
+
 import progress from "vite-plugin-progress";
 import vueJSX from "@vitejs/plugin-vue-jsx";
 import path from "path";
@@ -15,7 +16,7 @@ import { presetAttributify, presetUno } from "unocss";
 import Inspect from "vite-plugin-inspect";
 
 // https://github.com/vitejs/vite/tree/main/packages/plugin-legacy#polyfill-specifiers
-// import legacy from "@vitejs/plugin-legacy";
+import legacy from "@vitejs/plugin-legacy";
 
 // the environment variable of DEV that will only be used for the time being
 // It will be used to control Mockjs and SourceMap switches
@@ -39,16 +40,14 @@ export default defineConfig({
      * Can be used for: wrong positioning in the monitoring system
      */
     sourcemap: false,
-
     cssCodeSplit: true,
 
     rollupOptions: {
       output: {
         manualChunks: {
           // https://vitejs.dev/guide/build.html#splitting-vendor-chunks
-          vue: ["vue", "vue-router"],
+          vue: ["vue", "vue-router", "pinia"], // vue related
           vant: ["vant"],
-          pinia: ["pinia"],
         },
       },
     },
@@ -95,20 +94,29 @@ export default defineConfig({
       ],
     }),
 
-    eslintPlugin(),
     UnoCSS({
       presets: [presetUno(), presetAttributify()],
     }),
 
     // legacy options
     // ref: https://github.com/vitejs/vite/tree/main/packages/plugin-legacy#options
-    // legacy({
-    //   targets: ["defaults", "not IE 11"],
-    // }),
+    legacy({
+      targets: [
+        "> 1%",
+        "last 3 versions",
+        "not ie <= 8",
+        "chrome >= 14",
+        "safari >= 3",
+        "ios >= 8",
+        "android >= 4.0",
+      ],
+    }),
 
     viteCompression(),
 
     progress(),
+
+    eslintPlugin(),
 
     Inspect(),
   ],

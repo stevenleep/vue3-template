@@ -5,12 +5,15 @@ specifiers:
   '@commitlint/config-conventional': 17.1.0
   '@typescript-eslint/eslint-plugin': 5.36.1
   '@typescript-eslint/parser': 5.36.1
+  '@vant/touch-emulator': 1.4.0
   '@vitejs/plugin-legacy': 2.0.1
   '@vitejs/plugin-vue': ^3.0.3
   '@vitejs/plugin-vue-jsx': 2.0.1
   '@vueuse/components': ^9.1.1
   '@vueuse/core': ^9.1.1
   '@vueuse/router': ^9.1.1
+  amfe-flexible: 2.2.1
+  autoprefixer: 10.4.8
   axios: ^0.27.2
   axios-retry: ^3.3.1
   eslint: 8.23.0
@@ -23,6 +26,7 @@ specifiers:
   normalize.css: ^8.0.1
   only-allow: ^1.1.1
   pinia: ^2.0.21
+  postcss-pxtorem: 6.0.0
   prettier: 2.7.1
   sass: ^1.54.8
   standard-version: 9.5.0
@@ -45,13 +49,16 @@ specifiers:
   vue-tsc: ^0.39.5
 
 dependencies:
+  '@vant/touch-emulator': 1.4.0
   '@vueuse/components': 9.1.1_vue@3.2.38
   '@vueuse/core': 9.1.1_vue@3.2.38
   '@vueuse/router': 9.1.1_4n526fuacxb7krhzh75jg7hrn4
+  amfe-flexible: 2.2.1
   axios: 0.27.2
   axios-retry: 3.3.1
   normalize.css: 8.0.1
   pinia: 2.0.21_pj7ch6rmow6odq73xb5hfvge3q
+  postcss-pxtorem: 6.0.0
   unocss: 0.45.15_vite@3.0.9
   vant: 3.6.2_vue@3.2.38
   vue: 3.2.38
@@ -65,6 +72,7 @@ devDependencies:
   '@vitejs/plugin-legacy': 2.0.1_terser@5.15.0+vite@3.0.9
   '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.38
   '@vitejs/plugin-vue-jsx': 2.0.1_vite@3.0.9+vue@3.2.38
+  autoprefixer: 10.4.8
   eslint: 8.23.0
   eslint-config-prettier: 8.5.0_eslint@8.23.0
   eslint-plugin-prettier: 4.2.1_tgumt6uwl2md3n6uqnggd6wvce
@@ -1080,6 +1088,10 @@ packages:
       '@popperjs/core': 2.11.6
     dev: false
 
+  /@vant/touch-emulator/1.4.0:
+    resolution: {integrity: sha512-Zt+zISV0+wpOew2S1siOJ3G22y+hapHAKmXM+FhpvWzsRc4qahaYXatCAITuuXt0EcDp7WvEeTO4F7p9AtX/pw==}
+    dev: false
+
   /@vant/use/1.4.2:
     resolution: {integrity: sha512-+30mOa/FY26qk8Ag/Cmqb51JaOgE9rS1xDS24yDx4aHixMhTZH2QsuFGrQVPEazkeK8R+p14oW28kK3146Gtbg==}
     dev: false
@@ -1380,6 +1392,10 @@ packages:
       uri-js: 4.4.1
     dev: true
 
+  /amfe-flexible/2.2.1:
+    resolution: {integrity: sha512-L2VfvDzoETBjhRptg5u/IUuzHSuxm22JpSRb404p/TBGeRfwWmmNEbB+TFPIP/sS/+pbM18bCFH9QnMojLuPNw==}
+    dev: false
+
   /ansi-align/3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
     dependencies:
@@ -1514,6 +1530,21 @@ packages:
     resolution: {integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==}
     engines: {node: '>= 4.5.0'}
     hasBin: true
+    dev: true
+
+  /autoprefixer/10.4.8:
+    resolution: {integrity: sha512-75Jr6Q/XpTqEf6D2ltS5uMewJIx5irCU1oBYJrWjFenq/m12WRRrz6g15L1EIoYvPLXTbEry7rDOwrcYNj77xw==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+    dependencies:
+      browserslist: 4.21.3
+      caniuse-lite: 1.0.30001388
+      fraction.js: 4.2.0
+      normalize-range: 0.1.2
+      picocolors: 1.0.0
+      postcss-value-parser: 4.2.0
     dev: true
 
   /axios-retry/3.3.1:
@@ -2983,6 +3014,10 @@ packages:
       mime-types: 2.1.35
     dev: false
 
+  /fraction.js/4.2.0:
+    resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
+    dev: true
+
   /fragment-cache/0.2.1:
     resolution: {integrity: sha512-GMBAbW9antB8iZRHLoGw0b3HANt57diZYFO/HL1JGIC1MjKrdmhxvrJbupnVvpys0zsz7yBApXdQyfepKly2kA==}
     engines: {node: '>=0.10.0'}
@@ -4137,6 +4172,11 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
 
+  /normalize-range/0.1.2:
+    resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /normalize.css/8.0.1:
     resolution: {integrity: sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==}
     dev: false
@@ -4478,6 +4518,12 @@ packages:
   /postcss-media-query-parser/0.2.3:
     resolution: {integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==}
     dev: true
+
+  /postcss-pxtorem/6.0.0:
+    resolution: {integrity: sha512-ZRXrD7MLLjLk2RNGV6UA4f5Y7gy+a/j1EqjAfp9NdcNYVjUMvg5HTYduTjSkKBkRkfqbg/iKrjMO70V4g1LZeg==}
+    peerDependencies:
+      postcss: ^8.0.0
+    dev: false
 
   /postcss-resolve-nested-selector/0.1.1:
     resolution: {integrity: sha512-HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==}
