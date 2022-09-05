@@ -14,6 +14,7 @@ specifiers:
   '@vueuse/core': ^9.1.1
   '@vueuse/router': ^9.1.1
   axios: ^0.27.2
+  axios-retry: ^3.3.1
   element-plus: ^2.2.15
   eslint: 8.23.0
   eslint-config-prettier: 8.5.0
@@ -54,6 +55,7 @@ dependencies:
   '@vueuse/core': 9.1.1_vue@3.2.38
   '@vueuse/router': 9.1.1_4n526fuacxb7krhzh75jg7hrn4
   axios: 0.27.2
+  axios-retry: 3.3.1
   element-plus: 2.2.15_vue@3.2.38
   mockjs: 1.1.0
   normalize.css: 8.0.1
@@ -372,6 +374,13 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@babel/runtime/7.18.9:
+    resolution: {integrity: sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.9
+    dev: false
 
   /@babel/standalone/7.18.13:
     resolution: {integrity: sha512-5hjvvFkaXyfQri+s4CAZtx6FTKclfTNd2QN2RwgzCVJhnYYgKh4YFBCnNJSxurzvpSKD2NmpCkoWAkMc+j9y+g==}
@@ -1574,6 +1583,13 @@ packages:
     engines: {node: '>= 4.5.0'}
     hasBin: true
     dev: true
+
+  /axios-retry/3.3.1:
+    resolution: {integrity: sha512-RohAUQTDxBSWLFEnoIG/6bvmy8l3TfpkclgStjl5MDCMBDgapAWCmr1r/9harQfWC8bzLC8job6UcL1A1Yc+/Q==}
+    dependencies:
+      '@babel/runtime': 7.18.9
+      is-retry-allowed: 2.2.0
+    dev: false
 
   /axios/0.27.2:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
@@ -3679,6 +3695,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /is-retry-allowed/2.2.0:
+    resolution: {integrity: sha512-XVm7LOeLpTW4jV19QSH38vkswxoLud8sQ57YwJVTPWdiaI9I8keEhGFpBlslyVsgdQy4Opg8QOLb8YRgsyZiQg==}
+    engines: {node: '>=10'}
+    dev: false
+
   /is-stream/2.0.1:
     resolution: {integrity: sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==}
     engines: {node: '>=8'}
@@ -4877,7 +4898,6 @@ packages:
 
   /regenerator-runtime/0.13.9:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
-    dev: true
 
   /regex-not/1.0.2:
     resolution: {integrity: sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A==}

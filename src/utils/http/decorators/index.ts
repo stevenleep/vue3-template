@@ -1,12 +1,12 @@
 import { CreateMethodDecorator } from "./decorator";
-import { axiosInstance } from "..";
+import { requestInstance } from "..";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 
-const GET = CreateMethodDecorator("get", axiosInstance);
-const POST = CreateMethodDecorator("post", axiosInstance);
-const PUT = CreateMethodDecorator("put", axiosInstance);
-const DELETE = CreateMethodDecorator("delete", axiosInstance);
-const PATCH = CreateMethodDecorator("patch", axiosInstance);
+const GET = CreateMethodDecorator("get", requestInstance);
+const POST = CreateMethodDecorator("post", requestInstance);
+const PUT = CreateMethodDecorator("put", requestInstance);
+const DELETE = CreateMethodDecorator("delete", requestInstance);
+const PATCH = CreateMethodDecorator("patch", requestInstance);
 
 export { GET, POST, PUT, DELETE, PATCH };
 
