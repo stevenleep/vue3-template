@@ -2,11 +2,9 @@ import { defineConfig, splitVendorChunkPlugin } from "vite";
 import viteCompression from "vite-plugin-compression";
 import vue from "@vitejs/plugin-vue";
 import eslintPlugin from "vite-plugin-eslint";
-import Icons from "unplugin-icons/vite";
-import IconsResolver from "unplugin-icons/resolver";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import { VantResolver } from "unplugin-vue-components/resolvers";
 import progress from "vite-plugin-progress";
 import vueJSX from "@vitejs/plugin-vue-jsx";
 import path from "path";
@@ -49,7 +47,7 @@ export default defineConfig({
         manualChunks: {
           // https://vitejs.dev/guide/build.html#splitting-vendor-chunks
           vue: ["vue", "vue-router"],
-          element: ["element-plus"],
+          vant: ["vant"],
           pinia: ["pinia"],
         },
       },
@@ -63,21 +61,9 @@ export default defineConfig({
       "@components": "/src/components",
       "@store": "/src/store",
       "@services": "/src/services",
-      "@http": "/src/services/http",
       "@utils": "/src/utils",
       "@hooks": "/src/hooks",
       "@router": "/src/router",
-      "@config": "/src/config",
-    },
-  },
-
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `
-          @use "@/assets/styles/element-theme.scss" as *;
-        `,
-      },
     },
   },
 
@@ -91,26 +77,12 @@ export default defineConfig({
     splitVendorChunkPlugin(),
 
     AutoImport({
-      resolvers: [
-        ElementPlusResolver({
-          importStyle: "sass",
-          directives: true,
-        }),
-        IconsResolver({
-          prefix: "Icon",
-        }),
-      ],
+      resolvers: [VantResolver()],
     }),
     // https://github.com/antfu/unplugin-vue-components
     Components({
       dts: true,
-      resolvers: [
-        IconsResolver(),
-        ElementPlusResolver({
-          importStyle: "sass",
-          directives: true,
-        }),
-      ],
+      resolvers: [VantResolver()],
       dirs: ["src/components"],
       extensions: ["vue"],
       deep: true,
@@ -123,10 +95,7 @@ export default defineConfig({
       ],
     }),
 
-    Icons({ autoInstall: true }),
-
     eslintPlugin(),
-
     UnoCSS({
       presets: [presetUno(), presetAttributify()],
     }),

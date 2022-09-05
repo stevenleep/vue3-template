@@ -1,49 +1,18 @@
 import { RouteRecordRaw } from "vue-router";
 import { Paths } from "@/config";
-import Layout from "@/layout/index.vue";
-import { RouterMeta } from "./meta";
+
+/**
+ * @title: Constant routes
+ * @description: use in the app and only have two pages, all use the static mode route
+ */
+import Share from "@/views/Share/index.vue";
+import Generate from "@/views/Generate/index.vue";
+import NoMatched from "@/views/NoMatched/index.vue";
 
 const ConstantRoutes: RouteRecordRaw[] = [
-  {
-    path: Paths.Index,
-    name: Paths.Index,
-    component: Layout,
-    redirect: Paths.Home,
-    meta: {
-      // requiresAuth: true,
-      permissions: [RouterMeta.RequiresAuthorized],
-    },
-    children: [
-      {
-        path: Paths.Dashboard,
-        name: Paths.Dashboard,
-        component: () => import(/* webpackChunkName: "dashboard" */ "@/views/Dashboard/index.vue"),
-      },
-      {
-        path: Paths.Home,
-        name: Paths.Home,
-        component: () => import(/* webpackChunkName: "home" */ "@/views/Home/index.vue"),
-      },
-    ],
-  },
-  {
-    path: Paths.Admin,
-    name: Paths.Admin,
-    component: () => import(/* webpackChunkName: "admin" */ "@/views/Admin/index.vue"),
-    meta: {
-      // requiresAuth: true, admin: true,
-      permissions: [RouterMeta.RequiresAdmin, RouterMeta.RequiresAuthorized],
-    },
-  },
-  {
-    path: Paths.Login,
-    name: Paths.Login,
-    component: () => import(/* webpackChunkName: "login" */ "@/views/Login/index.vue"),
-  },
-  {
-    path: Paths.NoMatched,
-    name: "404",
-    component: () => import(/* webpackChunkName: "404" */ "@/views/NotFound/404.vue"),
-  },
+  { path: Paths.Share, name: Paths.Share, component: Share },
+  { path: Paths.Generate, name: Paths.Generate, component: Generate },
+  { path: Paths.NoMatched, name: "404", component: NoMatched },
 ];
+
 export default ConstantRoutes;

@@ -15,7 +15,7 @@
     "skipLibCheck": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "types": ["vite/client", "element-plus/global"],
+    "types": ["vite/client"],
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
@@ -23,7 +23,6 @@
       "@store/*": ["src/store/*"],
       "@services/*": ["src/services/*"],
       "@utils": ["src/utils/*"],
-      "@http/*": ["src/services/http/*"],
       "@config": ["src/config/*"],
       "@router": ["src/router/*"],
       "@hooks": ["src/hooks/*"],

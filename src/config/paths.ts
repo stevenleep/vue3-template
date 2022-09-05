@@ -1,10 +1,5 @@
 export const Paths = {
-  Index: "/",
-  Dashboard: "/dashboard",
-  Login: "/login",
-  Home: "/home",
-  Admin: "/admin",
+  Share: "/",
+  Generate: "/generate",
   NoMatched: "/:pathMatch(.*)*",
-  NotFound: "/404",
-  Forbidden: "/403",
 };
