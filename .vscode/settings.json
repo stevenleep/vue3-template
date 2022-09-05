@@ -25,6 +25,12 @@
   // ref: vscode tips
   // https://www.youtube.com/watch?v=EA_KnOZI-ck
   "editor.suggest.preview": true,
+  // Controls if quick suggestions should show up while typing
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
 
   "cSpell.words": [
     "axios",
@@ -44,8 +50,9 @@
     "vueuse"
   ],
 
-  // close vetur ts.js validation
-  // use default prettier-vscode
-  "vetur.validation.template": false,
-  "vetur.validation.script": false
+  // 这个属性可以控制你的编辑器将特定语言识别为特定的格式
+  // 将 .json 文件识别为 jsonc 格式（方便增加备注）
+  "files.associations": {
+    "*.json": "jsonc",
+  }
 }

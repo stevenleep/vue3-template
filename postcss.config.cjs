@@ -7,6 +7,7 @@ module.exports = {
       propList: ["*"],
     },
     autoprefixer: {
+      flexbox: "no-2009",
       overrideBrowserslist: [
         "> 1%",
         "last 3 versions",

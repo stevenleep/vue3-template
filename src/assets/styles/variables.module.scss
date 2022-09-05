@@ -1,0 +1,21 @@
+$primary-color: #FF4D67;
+
+/**  
+  @title 共享SCSS变量给JS使用
+
+  @description
+    在Webpack5中提供了一个 :export 语法，使得可以将SCSS变量进行导出，在JS使用Import作为module导入。
+    他的使用类似于：https://lightrun.com/answers/parcel-bundler-parcel-export-scss-variables-to-javascript
+
+    但是在查阅了 Vite 文档后, 发现并不支持/同时也暂不准备支持（ISSUE: https://github.com/vitejs/vite/issues/1279）
+
+    最终在 Sass-loader 的参考找到了这个 Comment: 
+    ref: https://github.com/webpack-contrib/sass-loader/issues/951#issuecomment-1139555654
+    ref: https://github.com/vitejs/vite/discussions/9601
+
+    可以将 scss 文件命名为 xx.module.scss
+    在使用 :export 就可以成功的工作
+*/
+:export {
+    primaryColor: $primary-color;
+}
