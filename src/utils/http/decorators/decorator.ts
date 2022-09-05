@@ -2,11 +2,24 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from 
 
 type FormatAxiosRequestConfig = (currentRequestConfig: AxiosRequestConfig) => AxiosRequestConfig;
 
+/**
+ * @description: 创建特定类型请求装饰器
+ *
+ * @param method 请求方法
+ * @param axiosInstance axios实例
+ * @returns 包装后的装饰器(调用返回装饰器)
+ */
 export function CreateMethodDecorator(method: Method | string, axiosInstance?: AxiosInstance) {
   return function decoratorWrapper<V>(
     url: AxiosRequestConfig["url"],
     formatAxiosRequestConfigFn?: FormatAxiosRequestConfig,
   ): MethodDecorator {
+    /**
+     * @description: 真正的方法装饰器
+     * @param instance 实例对象
+     * @param property 方法名
+     * @param descriptor 方法描述
+     */
     return function methodDecorator<T>(
       instance: Object,
       property: string | symbol,
@@ -23,6 +36,14 @@ export function CreateMethodDecorator(method: Method | string, axiosInstance?: A
   };
 }
 
+/**
+ *
+ * @param decorator 被装饰的方法描述
+ * @param method 请求方法
+ * @param url 请求地址
+ * @param requestInstance 请求实例
+ * @param formatAxiosRequestConfigFn 格式化请求配置的函数（可用于更改请求配置）
+ */
 function rewriteDecoratorMethod<T, V>(
   decorator: TypedPropertyDescriptor<T>,
   method: Method | string,
