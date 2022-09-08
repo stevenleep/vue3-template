@@ -21,6 +21,7 @@ onMounted(async () => {
       <RouterView />
     </ElConfigProvider>
 
+    <!-- <img v-lazy src="" alt="" /> -->
     <template #fallback>
       <div v-loading.fullscreen.lock="true" class="loading"></div>
     </template>

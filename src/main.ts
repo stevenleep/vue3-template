@@ -17,6 +17,7 @@ import "@/assets/styles/normalize.scss";
 
 // unocss
 import "uno.css";
+import { setupDirective } from "./directive";
 
 // Set app title according to runtime environment
 setAppTitle(getEnvOrDefault("VITE_APP_TITLE", "Admin"));
@@ -24,6 +25,7 @@ setAppTitle(getEnvOrDefault("VITE_APP_TITLE", "Admin"));
 const app = createApp(App);
 
 setupPinia(app);
+setupDirective(app);
 setupRouter(app)
   .isReady()
   .then(() => {
