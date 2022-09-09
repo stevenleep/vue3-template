@@ -1,32 +1,27 @@
 import { defineStore } from "pinia";
 
-export const useAppModuleStore = defineStore("appModuleStore", {
+export const useAppStore = defineStore("appModuleStore", {
   state: () => ({
-    sidebar: {
-      opened: false,
-      withoutAnimation: false,
-    },
+    collapse: false,
     device: {
       type: "desktop",
       pixelRatio: 1,
     },
   }),
-
   actions: {
-    toggleSideBarState() {
-      this.sidebar.opened = !this.sidebar.opened;
-      this.persistenceSideBarState(this.sidebar.opened);
+    toggleCollapse() {
+      this.collapse = !this.collapse;
+      this.persistCollapse(this.collapse);
     },
 
-    persistenceSideBarState(newestState: boolean) {
+    persistCollapse(newestState: boolean) {
       // TODO: persistence sidebar state
-      localStorage.setItem("sidebarStatus", newestState ? "1" : "0");
+      localStorage.setItem("collapse", newestState ? "1" : "0");
     },
   },
 
   getters: {
-    getSidebarState: (state) => state.sidebar.opened,
-    getSidebarAnimationState: (state) => state.sidebar.withoutAnimation,
+    getCollapseState: (state) => state.collapse,
     getDeviceType: (state) => state.device.type,
     getDevicePixelRatio: (state) => state.device.pixelRatio,
   },

@@ -1,18 +1,18 @@
 <template>
-  <section class="scrollbar-wrapper">
+  <section>
     <Logo />
-
     <ElScrollbar wrap-class="scrollbar-wrapper">
       <ElMenu
         mode="vertical"
+        :collapse="appStore.getCollapseState"
+        class="sidebar-menu"
+        router
+        ellipsis
         :default-active="route.path"
-        :collapse="appModuleStore.getSidebarState"
-        :unique-opened="false"
-        :collapse-transition="false"
       >
-        <Traversal :sources="fakeMenus">
+        <Traversal :sources="permissionStore.getMenuRoutes" keys="path">
           <template #traversal="{ value }">
-            <SidebarItem :item="value" />
+            <RecursiveMenu :menu-item="value" />
           </template>
         </Traversal>
       </ElMenu>
@@ -21,19 +21,13 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { ElScrollbar } from "element-plus";
+import { useAppStore, usePermissionStore } from "@/store";
 import { useRoute } from "vue-router";
-import { ElScrollbar, ElMenu } from "element-plus";
-import { useAppModuleStore } from "@/store";
-import { Paths } from "@/config";
 import Logo from "./Logo.vue";
-import SidebarItem from "./SidebarItem.vue";
+import RecursiveMenu from "./RecursiveMenu.vue";
 
-const appModuleStore = useAppModuleStore();
+const appStore = useAppStore();
 const route = useRoute();
-
-const fakeMenus = reactive([
-  { id: Paths.Dashboard, name: "Dashboard", icon: "menu-view-dashboard", path: Paths.Dashboard },
-  { id: Paths.Home, name: "Home", icon: "menu-view-index", path: Paths.Home },
-]);
+const permissionStore = usePermissionStore();
 </script>

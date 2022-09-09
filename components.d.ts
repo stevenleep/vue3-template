@@ -7,15 +7,22 @@ export {};
 
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
+    Collapse: typeof import("./src/components/Collapse/index.vue")["default"];
     Column: typeof import("./src/components/FormTable/Column.vue")["default"];
     DefaultFallback: typeof import("./src/components/ErrorBoundary/DefaultFallback.vue")["default"];
     ElButton: typeof import("element-plus/es")["ElButton"];
+    ElDropdown: typeof import("element-plus/es")["ElDropdown"];
+    ElDropdownItem: typeof import("element-plus/es")["ElDropdownItem"];
+    ElDropdownMenu: typeof import("element-plus/es")["ElDropdownMenu"];
     ElForm: typeof import("element-plus/es")["ElForm"];
     ElFormItem: typeof import("element-plus/es")["ElFormItem"];
     ElIcon: typeof import("element-plus/es")["ElIcon"];
     ElInput: typeof import("element-plus/es")["ElInput"];
     ElLoading: typeof import("element-plus/es")["ElLoading"];
+    ElMenu: typeof import("element-plus/es")["ElMenu"];
     ElMenuItem: typeof import("element-plus/es")["ElMenuItem"];
+    ElSubmenu: typeof import("element-plus/es")["ElSubmenu"];
+    ElSubMenu: typeof import("element-plus/es")["ElSubMenu"];
     ElTable: typeof import("element-plus/es")["ElTable"];
     ElTableColumn: typeof import("element-plus/es")["ElTableColumn"];
     ErrorBoundary: typeof import("./src/components/ErrorBoundary/ErrorBoundary.vue")["default"];

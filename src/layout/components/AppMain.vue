@@ -1,11 +1,22 @@
 <template>
-  <main class="main-container">
-    <Navbar />
-    <AppContent />
+  <main>
+    <ToolHeader />
+    <section class="main-content" p-20px>
+      <RouterView />
+    </section>
   </main>
 </template>
 
 <script lang="ts" setup>
-import Navbar from "./Navbar/index.vue";
-import AppContent from "./AppContent/index.vue";
+import ToolHeader from "./ToolHeader/index.vue";
 </script>
+<style lang="scss" scoped>
+@import "@/assets/styles/variable.module.scss";
+@import "@/assets/styles/layout.scss";
+
+.main-content {
+  height: $app-content-heightable;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}
+</style>

@@ -33,8 +33,10 @@
     "mockjs": "1.1.0",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.21",
+    "pinia-plugin-persist": "1.0.0",
     "vue": "^3.2.37",
-    "vue-router": "4"
+    "vue-router": "4",
+    "vue-types": "4.2.1"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
