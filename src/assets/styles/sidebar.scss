@@ -1,14 +1,13 @@
+@import "./variable.module";
+
 #app {
   .main-container {
     min-height: 100%;
-    transition: margin-left 0.28s;
-    margin-left: $side-bar-width;
     position: relative;
   }
 
   .sidebar-container {
-    transition: width 0.28s;
-    width: $side-bar-width;
+    // transition: width 0.28s;
     background-color: $menu-container-bg;
     height: 100%;
     position: fixed;
@@ -19,11 +18,9 @@
     z-index: 1001;
     overflow: hidden;
 
-    // reset element-ui css
-    .horizontal-collapse-transition {
-      transition: 0s width ease-in-out,
-                  0s padding-left ease-in-out,
-                  0s padding-right ease-in-out;
+    /* stylelint-disable-next-line selector-class-pattern */
+    .sidebar-menu:not(.el-menu--collapse)  {
+      width: $side-bar-width;
     }
 
     .scrollbar-wrapper {
@@ -31,18 +28,19 @@
     }
 
     /* stylelint-disable-next-line selector-class-pattern */
-    .el-scrollbar__bar.is-vertical {
-      right: 0;
-    }
+    // .el-scrollbar__bar.is-vertical {
+    //   right: 0;
+    // }
 
-    .is-horizontal {
-      display: none;
-    }
+    // .is-horizontal {
+    //   display: none;
+    // }
 
     .el-menu {
       border: none;
       height: 100%;
-      width: 100%;
+
+      // width: 100%;
       background-color: $menu-container-bg;
     
       .el-menu-item {

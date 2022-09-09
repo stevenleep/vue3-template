@@ -1,2 +1,55 @@
 // font-size
 $font-size-base: 14px;
+$font-size-sm: 12px;
+$font-size-lg: 16px;
+$font-size-xl: 18px;
+$font-size-xxl: 20px;
+
+// font-weight
+$font-weight-normal: normal;
+$font-weight-bold: bold;
+$font-weight-emphatic: 600;
+$font-weight-regular: 400;
+$font-weight-light: 300;
+$font-weight-block: 500;
+
+// font-line-height
+$font-line-height-base: 1.2;
+$font-family-base: 'PingFang SC', /* 默认使用苹方字体, 从系统加载（非系统加载模式会涉及版权问题）*/
+        -apple-system,    
+        system-ui,
+        blinkmacsystemfont,
+        'Segoe UI',
+        roboto,
+        oxygen,
+        ubuntu,
+        cantarell,
+        'Open Sans',
+        'Helvetica Neue',
+        sans-serif;
+
+@mixin global-default-font {
+    font-family: $font-family-base;
+    font-weight: $font-weight-normal;
+    line-height: $font-line-height-base;
+}
+
+@mixin card-default-font {
+    font-family: $font-family-base;
+
+    .card-title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
+    }
+
+    .card-subtitle {
+        font-size: $font-size-base;
+        font-weight: $font-weight-normal;
+    }
+
+    .card-text {
+        font-size: $font-size-base;
+        font-weight: $font-weight-normal;
+        line-height: $font-line-height-base;
+    }
+}
