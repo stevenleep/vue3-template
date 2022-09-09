@@ -1,6 +1,6 @@
 import { CreateMethodDecorator } from "./decorator";
-import { requestInstance } from "..";
-import { AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosRequestConfigWithGlobalRequest, requestInstance } from "..";
+import { AxiosResponse } from "axios";
 
 const GET = CreateMethodDecorator("get", requestInstance);
 const POST = CreateMethodDecorator("post", requestInstance);
@@ -10,5 +10,7 @@ const PATCH = CreateMethodDecorator("patch", requestInstance);
 
 export { GET, POST, PUT, DELETE, PATCH };
 
-export type ExtendedAxiosRequestConfig<D = any> = AxiosRequestConfig<D> & Promise<AxiosResponse<D>>;
+export type ExtendedAxiosRequestConfig<D = any, V = any> =
+  | AxiosRequestConfigWithGlobalRequest<D>
+  | Promise<AxiosResponse<V, D>>;
 export type ExtendedAxiosResponse<T = any> = Promise<AxiosResponse<T>>;

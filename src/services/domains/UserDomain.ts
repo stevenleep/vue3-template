@@ -16,9 +16,9 @@ export class UserDomain {
     };
     return axiosRequestConfig;
   })
-  async getUserWithParams(responseOrParams?: ExtendedAxiosRequestConfig) {
+  async getUserWithParams(responseOrParams?: ExtendedAxiosRequestConfig<true>) {
     const res = await responseOrParams;
-    console.log("responseOrParams -->", res?.config.headers?.customHeader);
+    console.log("res --", res);
     return res?.data;
   }
 }

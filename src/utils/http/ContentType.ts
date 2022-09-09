@@ -7,6 +7,8 @@ export const ContentType = {
 } as const;
 
 export type OptionalContentType = keyof typeof ContentType;
+export type ContentTypes = typeof ContentType[keyof typeof ContentType];
+
 export function getContentType<ContentTypeKeys extends OptionalContentType>(
   type: ContentTypeKeys,
 ): typeof ContentType[ContentTypeKeys] {

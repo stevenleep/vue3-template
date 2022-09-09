@@ -1,8 +1,17 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig, AxiosRequestHeaders } from "axios";
 import { getEnv } from "@/utils";
 import settings from "@/config/settings";
-import { getContentType } from "./ContentType";
+import { ContentTypes, getContentType, OptionalContentType } from "./ContentType";
 import { setupInterceptors } from "./interceptors";
+// import { setupAxiosRetry } from "./retry";
+
+export interface AxiosRequestConfigWithGlobalRequest<D = any> extends AxiosRequestConfig<D> {
+  requestType?: OptionalContentType;
+  headers: AxiosRequestHeaders & {
+    Authorization?: string;
+    "Content-Type"?: ContentTypes;
+  };
+}
 
 /**
  * @title About the source of BASE_URL？
@@ -48,4 +57,8 @@ export const requestInstance = axios.create({
   decompress: true,
 });
 
+// setup interceptors
 setupInterceptors(requestInstance);
+
+// setup retry config
+// setupAxiosRetry(requestInstance);

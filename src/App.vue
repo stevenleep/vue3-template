@@ -4,13 +4,14 @@ import services from "@/services";
 import { onMounted } from "vue";
 
 onMounted(async () => {
-  const userData = await services.userService.getUser();
-  console.log(userData);
+  // const userData = await services.userService.getUser();
+  // console.log(userData);
 
-  const postUserData = await services.userService.postUser();
-  console.log(postUserData);
-
-  const getUserWithParamsData = await services.userService.getUserWithParams();
+  // const postUserData = await services.userService.postUser();
+  // console.log(postUserData);
+  const getUserWithParamsData = await services.userService.getUserWithParams({
+    requestType: "JSON",
+  });
   console.log(getUserWithParamsData);
 });
 </script>

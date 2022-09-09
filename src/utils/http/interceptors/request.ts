@@ -1,9 +1,10 @@
-import { AxiosRequestConfig } from "axios";
+import token from "./token";
+import header from "./header";
+import { flow } from "@/utils/actuator";
+import { AxiosRequestConfigWithGlobalRequest } from "..";
 
-export function requestInterceptorImpl(config: AxiosRequestConfig) {
-  return config;
-}
+const runDefinitionFlow = flow(header, token);
 
-export function requestInterceptorErrorImpl(error: any) {
-  return Promise.reject(error);
+export default function requestFlow(config: AxiosRequestConfigWithGlobalRequest) {
+  return runDefinitionFlow<AxiosRequestConfigWithGlobalRequest>(config);
 }
