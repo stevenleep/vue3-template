@@ -4,7 +4,7 @@
   </section>
 </template>
 <style lang="scss" scoped>
-@import "@/assets/styles/variables.scss";
+@import "@/assets/styles/variable.module.scss";
 .login-view-panel {
   width: 500px;
   padding: $padding-xl * 2;

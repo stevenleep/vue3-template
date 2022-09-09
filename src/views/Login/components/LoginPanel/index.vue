@@ -44,7 +44,7 @@ function login() {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/styles/variables.scss";
+@import "@/assets/styles/variable.module.scss";
 .login-panel-container {
   h1 {
     margin-bottom: $padding-xl;

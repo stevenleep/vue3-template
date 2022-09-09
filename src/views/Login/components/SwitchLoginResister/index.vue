@@ -24,7 +24,7 @@ defineProps<{
 }>();
 </script>
 <style lang="scss" scoped>
-@import "@/assets/styles/variables.scss";
+@import "@/assets/styles/variable.module.scss";
 .switch-panel {
   display: flex;
   margin-top: $padding-xl;

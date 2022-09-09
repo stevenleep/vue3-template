@@ -4,7 +4,7 @@
       <RouterLink :to="appSettings.sidebar.link">
         <aside>
           <img v-if="appSettings.sidebar.enableLogo" :src="appSettings.sidebar.logo" alt="logo" />
-          <h1 class="sidebar-title">
+          <h1 v-if="!appStore.getCollapseState" class="sidebar-title">
             {{ appSettings.sidebar.title }}
           </h1>
         </aside>
@@ -15,15 +15,16 @@
 
 <script setup lang="ts">
 import appSettings from "@/config/settings";
+import { useAppStore } from "@/store";
+const appStore = useAppStore();
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/styles/variables.scss";
+@import "@/assets/styles/variable.module.scss";
 @import "@/assets/styles/family.scss";
 
 .sidebar-logo-container {
   height: $menu-header-height;
-  // width: 100%;
   transition: all 0.3s ease;
   padding: 0 $padding-xl;
   background-color: $side-bar-title;
