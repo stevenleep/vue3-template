@@ -14,6 +14,7 @@
     "preview": "vite preview",
     "simulate": "pnpm run build && live-server dist --port=8080",
     "lint-staged": "lint-staged",
+    "prepeploy": "sh ./scripts/deploy.sh",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --fix src",
     "format": "prettier .  --write",
     "changelog": "standard-version -t $(date +release-%Y%m%d-v)",
