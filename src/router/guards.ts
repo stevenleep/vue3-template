@@ -1,5 +1,5 @@
-import { Paths } from "@/config";
-import { isAuthorized } from "@/utils";
+import { Paths } from "@/configs";
+import { isAuthorized } from "@/helpers";
 import { router } from ".";
 import { isLoginPath } from "./util";
 

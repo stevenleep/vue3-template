@@ -1,5 +1,7 @@
 # admin
 
+[简体中文](./README_ZH.md)
+
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 Vue3 start up template
@@ -37,7 +39,7 @@ pnpm dev
 ├── CHANGELOG.md
 ├── README.md
 ├── auto-imports.d.ts
-├── components.d.ts
+├── ui.d.ts
 ├── docs # documents
 ├── index.html
 ├── node_modules
@@ -49,14 +51,14 @@ pnpm dev
 ├── src # source code
 ├── tsconfig.json
 ├── tsconfig.node.json
-└── vite.config.ts
+└── vite.configs.ts
 ```
 ### Source code directory
 ```bash
 .
 ├── App.vue
 ├── assets # static resources
-├── components # global components (Support automatic import)
+├── ui # global ui (Support automatic import)
 ├── directive # vue3 custom directive
 ├── env.d.ts # environment variable type definition
 ├── main.ts # entry file
@@ -64,7 +66,7 @@ pnpm dev
 ├── router
 ├── services # api/domains-services
 ├── store # pinia
-├── utils # some commonly used functions
+├── helpers # some commonly used functions
 └── vite-env.d.ts # module type definition
 ```
 

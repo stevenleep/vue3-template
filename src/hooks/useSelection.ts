@@ -1,4 +1,4 @@
-import { getElementTextContent, isSelectableElement } from "@/utils";
+import { getElementTextContent, isSelectableElement } from "@/helpers";
 import { Ref } from "vue";
 
 // export interface SelectionOptions {

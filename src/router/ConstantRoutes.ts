@@ -1,12 +1,13 @@
 import { RouteRecordRaw } from "vue-router";
-import { Paths } from "@/config";
-import Layout from "@/layout/index.vue";
+import { Paths } from "@/configs";
+import Layout from "@/layouts/index.vue";
 import { RouterMeta } from "./meta";
+import LoginLayout from "@/layouts/LoginLayout.vue";
 
 const ConstantRoutes: RouteRecordRaw[] = [
   {
     path: Paths.Index,
-    name: Paths.Index,
+    // name: Paths.Index,
     component: Layout,
     meta: {
       // requiresAuth: true,
@@ -17,6 +18,15 @@ const ConstantRoutes: RouteRecordRaw[] = [
         path: Paths.Dashboard,
         name: Paths.Dashboard,
         component: () => import(/* webpackChunkName: "dashboard" */ "@/views/Dashboard/index.vue"),
+      },
+      {
+        path: Paths.Workbench,
+        name: Paths.Workbench,
+        component: () => import(/* webpackChunkName: "Workbench" */ "@/views/Workbench/index.vue"),
+      },
+      {
+        path: Paths.Index,
+        redirect: Paths.Workbench,
       },
     ],
   },
@@ -32,7 +42,17 @@ const ConstantRoutes: RouteRecordRaw[] = [
   {
     path: Paths.Login,
     name: Paths.Login,
-    component: () => import(/* webpackChunkName: "login" */ "@/views/Login/index.vue"),
+    component: LoginLayout,
+    meta: {
+      // requiresAuth: false,
+    },
+    children: [
+      {
+        path: Paths.Login,
+        name: Paths.Login,
+        component: () => import(/* webpackChunkName: "login" */ "@/views/Login/index.vue"),
+      },
+    ],
   },
   {
     path: Paths.NoMatched,

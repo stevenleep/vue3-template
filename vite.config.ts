@@ -32,14 +32,14 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": "/src",
-      "@components": "/src/components",
+      "@components": "/src/ui",
       "@store": "/src/store",
       "@services": "/src/services",
       "@http": "/src/services/http",
-      "@utils": "/src/utils",
+      "@utils": "/src/helpers",
       "@hooks": "/src/hooks",
       "@router": "/src/router",
-      "@config": "/src/config",
+      "@config": "/src/configs",
     },
   },
 
@@ -56,7 +56,7 @@ export default defineConfig({
     Components({
       dts: true,
       resolvers: [ElementPlusResolver()],
-      dirs: ["src/components"],
+      dirs: ["src/ui"],
       extensions: ["vue"],
       deep: true,
       exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/],

@@ -1,21 +1,20 @@
 import { createApp } from "vue";
-import "element-plus/dist/index.css";
-import App from "./App.vue";
 import { setupPinia } from "@/store";
-import { setAppTitle, getEnvOrDefault } from "@/utils";
 import { setupRouter } from "@/router";
+import App from "./App.vue";
 
-// Set app title according to runtime environment
-setAppTitle(getEnvOrDefault("VITE_APP_TITLE", "Admin"));
+import "element-plus/dist/index.css";
+import "./global.less";
 
+// Create app instance
 const app = createApp(App);
 
+// setup store
 setupPinia(app);
+
+// setup router and start app
 setupRouter(app)
   .isReady()
   .then(() => {
     app.mount("#app");
   });
-
-// Start app
-// app.mount("#app");

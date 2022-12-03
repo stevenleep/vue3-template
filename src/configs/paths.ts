@@ -7,4 +7,5 @@ export const Paths = {
   NoMatched: "/:pathMatch(.*)*",
   NotFound: "/404",
   Forbidden: "/403",
+  Workbench: "/workbench",
 };

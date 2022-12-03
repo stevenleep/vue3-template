@@ -1,4 +1,4 @@
-import { Paths } from "@/config";
+import { Paths } from "@/configs";
 import { RouteLocationNormalized } from "vue-router";
 
 export function isLoginPath(routerRaw: RouteLocationNormalized): boolean {

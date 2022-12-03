@@ -1,4 +1,4 @@
-import { getElementTextContent, isElement } from "@/utils";
+import { getElementTextContent, isElement } from "@/helpers";
 
 export function useWriteTextClipboard(text: string): Promise<void> {
   /* Copy the text inside the text field */

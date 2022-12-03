@@ -1,4 +1,4 @@
-import { getEnv } from "@/utils";
+import { getEnv } from "@/helpers";
 import axios from "axios";
 
 // XXX: 临时解决方案
