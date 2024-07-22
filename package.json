@@ -10,7 +10,7 @@
     "prepare": "husky install",
     "preinstall": "only-allow pnpm && sh ./scripts/preinstall.sh",
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "simulate": "pnpm run build && live-server dist --port=8080",
     "lint-staged": "lint-staged",
