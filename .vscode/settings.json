@@ -2,23 +2,15 @@
   "editor.formatOnSave": true,
   // "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": "explicit"
   },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue"
-  ],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
   // ref: https://en.wikipedia.org/wiki/Newline#History
   "files.eol": "\n",
   // Render vertical rulers after a certain number of monospace characters.
   // Use multiple values for multiple rulers.
   // No rulers are drawn if array is empty.
-  "editor.rulers": [
-    100
-  ],
+  "editor.rulers": [100],
   "workbench.colorCustomizations": {
     "editorRuler.foreground": "#9a5151"
   },
