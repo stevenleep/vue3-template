@@ -10,6 +10,6 @@ export function login(phone: string, code: string) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({ token: "xxx", phone, code });
-    }, 1000);
+    }, 1500);
   });
 }

@@ -17,9 +17,9 @@ setAppTitle("Login");
 .login-layout {
   height: 100%;
 
-  .login-container {
-    display: flex;
-    justify-content: center;
-  }
+  // .login-container {
+  // display: flex;
+  // justify-content: center;
+  // }
 }
 </style>

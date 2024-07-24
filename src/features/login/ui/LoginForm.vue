@@ -1,31 +1,49 @@
 <template>
   <div>
-    <form>
-      <div class="form-item">
-        <label for="phone">Phone</label>
-        <input id="phone" v-model="state.phone" type="tel" name="phone" />
-      </div>
-
-      <div class="form-item">
-        <label for="code">Code</label>
-        <div>
-          <input id="code" v-model="state.code" type="text" name="code" />
-          <button type="button" class="code-btn" @click="getCode(state.code)">Get Code</button>
-        </div>
-      </div>
-      <button type="submit" @click.prevent="login(state.phone, state.code)">Login</button>
-    </form>
+    <ElForm :model="state" size="default" status-icon :rules="loginRules">
+      <ElFormItem label="手机号" prop="phone">
+        <ElInput v-model="state.phone" type="tel" name="phone" placeholder="(+86) Phone number" />
+      </ElFormItem>
+      <ElFormItem label="验证码" prop="code">
+        <ElInput v-model="state.code" type="text" name="code" placeholder="code" />
+        <ElButton size="small" @click="getCode(state.code)">Get Code</ElButton>
+      </ElFormItem>
+      <ElFormItem>
+        <ElButton :loading="isLoading" type="primary" @click.stop="startLogin">
+          Start enjoying.
+        </ElButton>
+      </ElFormItem>
+    </ElForm>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
+import { ElForm, ElFormItem, ElButton, ElNotification } from "element-plus";
 import { getCode, login } from "../service";
 
-const state = reactive({
-  phone: "",
-  code: "",
-});
+const state = reactive({ phone: "", code: "" });
+const isLoading = ref(false);
+
+const loginRules = {
+  phone: [{ required: true, message: "Please input your phone number", trigger: "blur" }],
+  code: [{ required: true, message: "Please input your code", trigger: "blur" }],
+};
+
+async function startLogin() {
+  isLoading.value = true;
+  const loginRes = await login(state.phone, state.code);
+  ElNotification(
+    loginRes
+      ? { title: "Login Success", message: "Welcome to the world.", type: "success" }
+      : {
+          title: "Login Failed",
+          message: "Please check your phone number and code.",
+          type: "error",
+        },
+  );
+  isLoading.value = false;
+}
 </script>
 
 <style scoped lang="less">
